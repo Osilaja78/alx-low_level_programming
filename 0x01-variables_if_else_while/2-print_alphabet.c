@@ -5,12 +5,12 @@
  *
  * Description: 'This program prints a-z'
  *
- * Result: Always 0 (success)
+ * Return: Always 0 (success)
  */
 int main(void)
 {
 	char alpha = 'a';
-	
+
 	while (alpha <= 'z')
 	{
 		putchar(alpha);
