@@ -22,9 +22,9 @@ int main(void)
 		{
 			putchar('0' + num1);
 			putchar(',');
-			putchar(' ');
 			num1++;
 		}
+		putchar(' ');
 	}
 	return (0);
 }
