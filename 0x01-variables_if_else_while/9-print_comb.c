@@ -13,18 +13,13 @@ int main(void)
 
 	while (num1 <= 9)
 	{
-		if (num1 == 9)
+		putchar('0' + num1);
+		if (num1 != 9)
 		{
-			putchar('0' + num1);
-			num1++;
-		}
-		else
-		{
-			putchar('0' + num1);
 			putchar(',');
-			num1++;
+			putchar(' ');
 		}
-		putchar(' ');
+		num1++;
 	}
 	putchar('\n');
 	return (0);
