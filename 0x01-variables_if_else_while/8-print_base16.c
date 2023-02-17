@@ -11,7 +11,7 @@ int main(void)
 {
 	int hex = 0;
 
-	while (hex <= 16)
+	while (hex <= 15)
 	{
 		if (hex < 10)
 		{
