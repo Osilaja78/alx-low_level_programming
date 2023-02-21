@@ -2,6 +2,7 @@
 
 /**
  * print_last_digit - Entry point
+ * @c: variable to be checked
  *
  * Description: 'This program prints last digit'
  *
