@@ -3,6 +3,7 @@
 
 /**
  * _isalpha - Entry point
+ * @c: variable to be checked
  *
  * Description: 'This program checks if a value is alpha'
  *
