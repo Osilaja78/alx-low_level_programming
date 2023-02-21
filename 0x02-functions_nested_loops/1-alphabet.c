@@ -7,12 +7,6 @@
  *
  * Return: Always 0 (success)
  */
-int main(void)
-{
-	print_alphabet();
-	return (0);
-}
-
 char print_alphabet()
 {
 	char start = 'a';
@@ -20,8 +14,8 @@ char print_alphabet()
 	while(start <= 'z')
 	{
 		_putchar(start);
-		_putchar('\n');
 		start++;
 	}
+	_putchar('\n');
 	return (0);
 }
