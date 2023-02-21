@@ -9,11 +9,11 @@
  */
 int main(void)
 {
-	print_alpha();
+	print_alphabet();
 	return (0);
 }
 
-char print_alpha()
+char print_alphabet()
 {
 	char start = 'a';
 
