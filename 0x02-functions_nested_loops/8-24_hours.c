@@ -9,21 +9,33 @@
  */
 void jack_bauer(void)
 {
-	int minutes = 00;
-	int seconds;
+	int a,b,c,d;
+	a = 0;
 
-	while (minutes <= 23)
+	while (a <= 2)
 	{
-		seconds = 00;
-
-		while (seconds <= 59)
+		b = 0;
+		while (b <= 3)
 		{
-			_putchar('0' + minutes);
-			_putchar(':');
-			_putchar('0' + seconds);
-			_putchar('\n');
-			seconds++;
+			c = 0;
+
+			while (c <= 5)
+			{
+				d = 0;
+				while (d <= 9)
+				{
+					_putchar(a + '0');
+					_putchar(b + '0');
+					_putchar(':');
+					_putchar(c + '0');
+					_putchar(d + '0');
+					_putchar('\n');
+					d++;
+				}
+				c++;
+			}
+			b++;
 		}
-		minutes++;
+		a++;
 	}
 }
