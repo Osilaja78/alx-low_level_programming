@@ -3,6 +3,7 @@
 
 /**
  * _abs - Entry point
+ * @c: variable to be checked
  *
  * Description: 'This program prints the absolute of a number'
  *
@@ -11,7 +12,5 @@
 int _abs(int c)
 {
 	int absolute = abs(c);
-
-	_putchar(absolute);
-	return (0);
+	return (absolute);
 }
