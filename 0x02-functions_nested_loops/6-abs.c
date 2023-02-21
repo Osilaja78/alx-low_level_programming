@@ -12,5 +12,6 @@
 int _abs(int c)
 {
 	int absolute = abs(c);
+
 	return (absolute);
 }
