@@ -23,7 +23,14 @@ int main(void)
 		}
 		else if (k == 0)
 		{
-			printf("Buzz ");
+			if (i == 100)
+			{
+				printf("Buzz");
+			}
+			else
+			{
+				printf("Buzz ");
+			}
 		}
 		else if (j == 0)
 		{
