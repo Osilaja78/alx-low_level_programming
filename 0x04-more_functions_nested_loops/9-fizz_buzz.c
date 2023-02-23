@@ -7,10 +7,10 @@
  *
  * Return: Always 0 (success)
  */
-int main()
+int main(void)
 {
 	int i = 1;
-	int j,k;
+	int j, k;
 
 	while (i <= 100)
 	{
@@ -19,7 +19,7 @@ int main()
 
 		if ((j == 0) && (k == 0))
 		{
-			printf("FizzBuzz ");	
+			printf("FizzBuzz ");
 		}
 		else if (k == 0)
 		{
