@@ -9,9 +9,7 @@
  *
  * Return: Always 0
  */
-int _strlen(int *s)
+int _strlen(char *s)
 {
-	int b = strlen(*s);
-
-	return (b)
+	return (strlen(s));
 }
