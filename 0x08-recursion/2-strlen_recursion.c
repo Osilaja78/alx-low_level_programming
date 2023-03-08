@@ -8,14 +8,14 @@
  *
  * Return: int (length of @s)
  */
-int len = 0;
-
 int _strlen_recursion(char *s)
 {
-	if (*s != '\0')
+	if (*s == '\0')
 	{
-		len = len + 1;
-		_strlen_recursion(s + 1);
+		return (0);
 	}
-	return (len);
+	else
+	{
+		return (1 + _strlen_recursion(s + 1));
+	}
 }
