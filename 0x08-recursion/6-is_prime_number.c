@@ -32,8 +32,8 @@ int is_prime(int n, int guess)
 	{
 		return (0);
 	}
-	
-	if (guess > n/2)
+
+	if (guess > n / 2)
 	{
 		return (1);
 	}
