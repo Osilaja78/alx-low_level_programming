@@ -13,9 +13,6 @@ int main(int argc, char *argv[])
 {
 	(void) argv;
 
-	if (argc)
-	{
-		printf("%d\n", argc);
-	}
+	printf("%d\n", argc);
 	return (0);
 }
