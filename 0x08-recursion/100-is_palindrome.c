@@ -12,11 +12,11 @@ char rev_string(char *s);
  */
 int is_palindrome(char *s)
 {
-	char reversed;
+	char reverse;
 
-	reversed = rev_string(s);
+	reverse = rev_string(s);
 
-	if (reversed == *s)
+	if (reverse == *s)
 	{
 		return (1);
 	}
