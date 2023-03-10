@@ -16,7 +16,7 @@ int is_palindrome(char *s)
 
 	reversed = rev_string(s);
 
-	if (reversed == s)
+	if (reversed == *s)
 	{
 		return (1);
 	}
