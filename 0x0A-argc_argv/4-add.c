@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 
 /**
  * main - Entry point
@@ -9,7 +8,7 @@
  *
  * Desription: Adds numbers
  *
- * Return Always 0.
+ * Return: Always 0.
  */
 int main(int argc, char *argv[])
 {
@@ -19,6 +18,7 @@ int main(int argc, char *argv[])
 	if (argc == 1)
 	{
 		printf("0\n");
+		return (0);
 	}
 
 	for (i = 1; i < argc; i++)
@@ -38,6 +38,6 @@ int main(int argc, char *argv[])
 			return (1);
 		}
 	}
-	printf("%d\n" ,result);
+	printf("%d\n", result);
 	return (0);
 }
