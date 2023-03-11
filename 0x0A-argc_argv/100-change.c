@@ -6,13 +6,15 @@
  * @argc: arg count
  * @argv: arg vector
  *
- * Description: prints the minimum number of coins to make change for an amount of money.
+ * Description: prints the min no. of coins to make change for an amount.
  *
  * Return: Always 0.
  */
 int main(int argc, char *argv[])
 {
-	int num;
+	int num, i;
+	int num_coins = 0;
+	int coins[] = {25, 10, 5, 2, 1};
 
 	if (argc != 2)
 	{
@@ -25,30 +27,15 @@ int main(int argc, char *argv[])
 	if (num < 0)
 	{
 		printf("0\n");
-		return (1);
+		return (0);
 	}
-	else
+
+	for (i = 0; i < 5; i++)
 	{
-		if (num > 25)
-		{
-			printf("%d\n", (num / 25) + (num % 25));
-		}
-		else if (num > 10)
-		{
-			printf("%d\n", (num / 10) + (num % 10));
-		}
-		else if (num > 5)
-		{
-			printf("%d\n", (num / 5) + (num % 5));
-		}
-		else if (num > 2)
-		{
-			printf("%d\n", (num / 2) + (num % 2));
-		}
-		else
-		{
-			printf("1\n");
-		}
+		num_coins += num / coins[i];
+		num %= coins[i];
 	}
+
+	printf("%d\n", num_coins);
 	return (0);
 }
