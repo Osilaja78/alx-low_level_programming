@@ -31,6 +31,10 @@ int main(int argc, char *argv[])
 			{
 				result = result + num;
 			}
+			else
+			{
+				return (1);
+			}
 		}
 		else
 		{
