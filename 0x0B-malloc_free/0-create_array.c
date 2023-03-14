@@ -24,18 +24,16 @@ char *create_array(unsigned int size, char c)
 		free(arr);
 	}
 
-	if (*arr)
+	if (arr == NULL)
+	{
+		return (NULL);
+	}
+	else
 	{
 		for (i = 0; i <= size; i++)
 		{
 			arr[i] = c;
 		}
 	}
-	else
-	{
-		return (NULL);
-		free(arr);
-	}
 	return (arr);
-	free(arr);
 }
