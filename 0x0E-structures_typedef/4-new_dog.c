@@ -33,12 +33,12 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (dog_new->name == NULL || dog_new->owner == NULL)
 		return (NULL);
 
-	for (i = 0; i < len1; i++)
+	for (i = 0; i <= len1; i++)
 		dog_new->name[i] = name[i];
 
 	dog_new->age = age;
 
-	for (j = 0; j < len2; j++)
+	for (j = 0; j <= len2; j++)
 		dog_new->owner[j] = owner[j];
 
 	return (dog_new);
