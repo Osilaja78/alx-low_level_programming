@@ -1,7 +1,5 @@
 #include "dog.h"
-#include <stddef.h>
 #include <stdlib.h>
-#include <string.h>
 
 /**
  * new_dog - Entry point.
