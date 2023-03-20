@@ -1,6 +1,7 @@
 #include "dog.h"
 #include <stdlib.h>
 
+int _strlen(char *s);
 /**
  * new_dog - Entry point.
  * @name: name of dog
@@ -21,19 +22,21 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	if (name != NULL && owner != NULL)
 	{
-		len1 = len2 = 0;
-
-		while (name[len1])
-			len1++;
-
-		while (owner[len2])
-			len2++;
+		len1 = _strlen(name);
+		len2 = _strlen(owner);
 
 		dog_new->name = malloc(sizeof(dog_new->name) * len1);
 		dog_new->owner = malloc(sizeof(dog_new->owner) * len2);
 
-		if (dog_new->name == NULL || dog_new->owner == NULL)
+		if (dog_new->name == NULL)
 		{
+			free(dog_new);
+			return (NULL);
+		}
+
+		if (dog_new->owner == NULL)
+		{
+			free(dog_new->owner);
 			free(dog_new);
 			return (NULL);
 		}
@@ -48,4 +51,22 @@ dog_t *new_dog(char *name, float age, char *owner)
 	}
 
 	return (dog_new);
+}
+
+/**
+ * _strlen - Find length of a string
+ * @s: string to be counted
+ *
+ * Return: int.
+ */
+int _strlen(char *s)
+{
+	int len = 0;
+
+	while (s[len])
+	{
+		len++;
+	}
+
+	return (len);
 }
