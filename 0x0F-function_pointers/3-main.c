@@ -23,11 +23,14 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	if (argv[2])
+	operator = argv[2];
+
+	if (!operator)
 	{
-		operator = argv[2];
-		operation = get_op_func(operator);
+		printf("Error\n");
+		exit(99);
 	}
+	operation = get_op_func(operator);
 
 	if (operation == NULL)
 	{
