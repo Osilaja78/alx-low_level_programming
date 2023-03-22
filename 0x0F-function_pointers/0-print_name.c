@@ -11,10 +11,13 @@
  */
 void print_name(char *name, void (*f)(char *))
 {
-	if (name)
+	if (f)
 	{
 		void (*p)(char *) = f;
-
-		p(name);
+		
+		if (name)
+		{
+			p(name);
+		}
 	}
 }
