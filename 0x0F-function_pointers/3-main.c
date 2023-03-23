@@ -38,12 +38,6 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
-	if ((operation == op_div && b == 0) || (operation == op_mod && b == 0))
-	{
-		printf("Error\n");
-		exit(100);
-	}
-
 	result = operation(a, b);
 
 	printf("%d\n", result);
