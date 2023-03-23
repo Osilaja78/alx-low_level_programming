@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	}
 	operation = get_op_func(operator);
 
-	if (!operation)
+	if (operation == NULL)
 	{
 		printf("Error\n");
 		exit(99);
