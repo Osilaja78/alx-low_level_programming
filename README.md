@@ -1,2 +1,1 @@
-I am starting to learn C programming language
-in the ALX software engineering program.
+I'm beginning to learn C programming with ALX SWE.

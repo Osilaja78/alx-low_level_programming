@@ -1,6 +1,7 @@
 #include "main.h"
+#include <string.h>
 
-char rev_string(char *s);
+char rev_string(char *str);
 
 /**
  * is_palindrome - Entry point
@@ -34,14 +35,18 @@ int is_palindrome(char *s)
  *
  * Return: reversed string.
  */
-char rev_string(char *s)
+char rev_string(char *str)
 {
-	if (*s == '\0')
+	char *rev[] = "\0";
+
+	if (*str == '\0')
 	{
 		return (1);
 	}
 	else
 	{
-		return (rev_string(s + 1));
+		strncat(rev, str, 1);
+		rev_string(str + 1);
 	}
+	return (rev);
 }
