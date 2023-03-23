@@ -1,6 +1,7 @@
 #include "3-calc.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * main - Entry point.
@@ -32,7 +33,7 @@ int main(int argc, char *argv[])
 	}
 	operation = get_op_func(operator);
 
-	if (operation == NULL)
+	if (!operation)
 	{
 		printf("Error\n");
 		exit(99);
