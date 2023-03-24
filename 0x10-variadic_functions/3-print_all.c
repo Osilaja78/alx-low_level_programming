@@ -22,31 +22,28 @@ void print_all(const char * const format, ...)
 
 	while (format && format[j])
 	{
-		if (j == (k - 1))
-			sep = "";
-
 		switch (format[j])
 		{
 			case 'c':
 				c = (char) va_arg(ptr, int);
-				printf("%c%s", c, sep);
+				printf("%c%s", c, j == (k - 1) ? "" : sep);
 				break;
 			case 'i':
 				i = va_arg(ptr, int);
-				printf("%d%s", i, sep);
+				printf("%d%s", i, j == (k - 1) ? "" : sep);
 				break;
 			case 'f':
 				f = (float) va_arg(ptr, double);
-				printf("%f%s", f, sep);
+				printf("%f%s", f, j == (k - 1) ? "" : sep);
 				break;
 			case 's':
 				s = va_arg(ptr, char *);
 				if (s == NULL)
 				{
-					printf("(nil)%s", sep);
+					printf("(nil)%s", j == (k - 1) ? "" : sep);
 					break;
 				}
-				printf("%s%s", s, sep);
+				printf("%s%s", s, j == (k - 1) ? "" : sep);
 				break;
 		}
 		j++;
