@@ -17,17 +17,23 @@ list_t *add_node(list_t **head, const char *str)
 	list_t *temp;
 	unsigned int count = 0;
 
+	if (!head || !str)
+		return (NULL);
+
 	new = malloc(sizeof(list_t));
 
 	if (new == NULL)
-	{
-		printf("Error\n");
 		return (NULL);
-	}
+
 	temp = *head;
 
 	*head = new;
 	new->str = strdup(str);
+	if (!new->str)
+	{
+		free(new);
+		return (NULL);
+	}
 
 	while (*str)
 	{
