@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * print_len - Entry point.
+ * list_len - Entry point.
  * @h: pointer to list
  *
  * Return: number of elements in list
