@@ -22,7 +22,7 @@ list_t *add_node(list_t **head, const char *str)
 	if (new == NULL)
 	{
 		printf("Error\n");
-		exit(1);
+		return (NULL);
 	}
 	temp = *head;
 
