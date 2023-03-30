@@ -18,6 +18,12 @@ list_t *add_node(list_t **head, const char *str)
 	unsigned int count = 0;
 
 	new = malloc(sizeof(list_t));
+
+	if (new == NULL)
+	{
+		printf("Error\n");
+		exit(1);
+	}
 	temp = *head;
 
 	*head = new;
