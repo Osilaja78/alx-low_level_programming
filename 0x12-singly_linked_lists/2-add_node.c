@@ -14,6 +14,7 @@
 list_t *add_node(list_t **head, const char *str)
 {
 	list_t *new;
+	list_t *temp;
 	unsigned int count = 0;
 
 	if (!head || !str)
@@ -40,8 +41,6 @@ list_t *add_node(list_t **head, const char *str)
 		str++;
 	}
 	new->len = count;
-	new->next = *head;
-	*head = new;
-	printf("[%u] %s\n", new->len, new->str);
+	new->next = temp;
 	return (new);
 }
