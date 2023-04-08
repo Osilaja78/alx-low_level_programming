@@ -9,23 +9,15 @@
  */
 void print_binary(unsigned long int n)
 {
-	int i = 0, j, binary[32];
-
 	if (n == 0)
 	{
 		_putchar('0');
 		return;
 	}
 
-	while (n > 0)
+	if (n > 1)
 	{
-		binary[i] =  n & 1;
-		n >>= 1;
-		i++;
+		print_binary(n >> 1);
 	}
-
-	for (j = i - 1; j >= 0; j--)
-	{
-		_putchar(binary[j] + '0');
-	}
+	_putchar((n & 1) + '0');
 }
