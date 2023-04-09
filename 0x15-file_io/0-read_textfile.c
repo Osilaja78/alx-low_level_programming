@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int _putchar(char c);
+#define INT_MAX 2147483647
+
 /**
  * read_textfile - reads a text file.
  * @filename: name of file to read
@@ -18,6 +19,9 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	fd = fopen(filename, "r");
 	if (filename == NULL || fd == NULL)
+		return (0);
+
+	if (letters > INT_MAX)
 		return (0);
 
 	ch = malloc(sizeof(char) * letters);
