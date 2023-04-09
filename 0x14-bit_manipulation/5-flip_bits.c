@@ -5,7 +5,7 @@
  * @n: num 1
  * @m: num 2
  *
- * Return; count of flipped bits.
+ * Return: count of flipped bits.
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
