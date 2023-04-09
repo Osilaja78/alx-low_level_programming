@@ -1,9 +1,6 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
-#include <fcntl.h>
-#include <unistd.h>
 
 int _putchar(char c);
 /**
@@ -15,37 +12,43 @@ int _putchar(char c);
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd;
-	ssize_t size;
-	char *ch = malloc(sizeof(char) * letters);
+	FILE *fd;
+	ssize_t size, bytes_written;
+	char *ch;
 
 	if (filename == NULL)
 		return (0);
 
-	fd = open(filename, O_RDONLY);
-
-	if (fd < 0)
+	fd = fopen(filename, "r");
+	if (fd == NULL)
 		return (0);
 
-	size = read(fd, ch, letters);
-
-	while (*ch)
+	ch = malloc(sizeof(char) * letters);
+	if (ch == NULL)
 	{
-		_putchar(*ch);
-		ch++;
+		fclose(fd);
+		return (0);
 	}
-	close(fd);
-	return (size);
-}
 
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
+	size = fread(ch, sizeof(char), letters, fd);
+
+	if (size < 0)
+	{
+		free(ch);
+		fclose(fd);
+		return (0);
+	}
+
+	bytes_written = fwrite(ch, sizeof(char), size, stdout);
+
+	if (bytes_written < size)
+	{
+		free(ch);
+		fclose(fd);
+		return (0);
+	}
+
+	free(ch);
+	fclose(fd);
+	return (size);
 }
