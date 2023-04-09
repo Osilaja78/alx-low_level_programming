@@ -16,11 +16,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	ssize_t size, bytes_written;
 	char *ch;
 
-	if (filename == NULL)
-		return (0);
-
 	fd = fopen(filename, "r");
-	if (fd == NULL)
+	if (filename == NULL || fd == NULL)
 		return (0);
 
 	ch = malloc(sizeof(char) * letters);
