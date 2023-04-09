@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
-/*
+
+/**
  * clear_bit - clears a particulsr bit at index.
  * @n: number
  * @index: index to clear.
