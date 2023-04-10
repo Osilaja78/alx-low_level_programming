@@ -50,28 +50,34 @@ int file_action(char *file_from, char *file_to)
 		exit(98);
 	}
 
-	fd_2 = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	fd_2 = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_2 == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: can't write to file %s\n", file_to);
 		exit(99);
 	}
 
-	bytes_read = read(fd_1, buffer, 1024);
-	if (bytes_read == -1)
+	while ((bytes_read = read(fd_1, buffer, 1024)))
 	{
-		close_fd(fd_1);
-		exit(98);
-	}
+		if (bytes_read == -1)
+		{
+			close_fd(fd_1);
+			close_fd(fd_2);
+			exit(98);
+		}
 
-	/*buffer[bytes_read] = '\0';*/
+		bytes_written = write(fd_2, buffer, bytes_read);
+		if (bytes_written == -1)
+		{
+			close_fd(fd_1);
+                        close_fd(fd_2);
+                        exit(98);
+		}
 
-	bytes_written = write(fd_2, buffer, bytes_read);
-	if (bytes_written != bytes_read)
-	{
-		dprintf(STDERR_FILENO, "Error: can't write to file %s\n", file_to);
-		close_fd(fd_2);
-		exit(99);
+		if (bytes_written != bytes_read)
+		{
+			dprintf(STDERR_FILENO, "Error: can't write to file %s\n", file_to);
+		}
 	}
 
 	close_fd(fd_1);
