@@ -1,55 +1,52 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 
-#define INT_MAX 2147483647
-
-/**
- * read_textfile - reads a text file.
- * @filename: name of file to read
- * @letters: no. of letters to read
- *
- * Return: no of letters read.
- */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *fd;
-	ssize_t size, bytes_written;
-	char *ch;
+	int fd;
+	char *buffer;
+	ssize_t bytes_read, bytes_written;
 
-	fd = fopen(filename, "r");
-	if (filename == NULL || fd == NULL)
-		return (0);
-
-	if (letters > INT_MAX)
-		return (0);
-
-	ch = malloc(sizeof(char) * letters);
-	if (ch == NULL)
+	if (filename == NULL)
 	{
-		fclose(fd);
 		return (0);
 	}
 
-	size = fread(ch, sizeof(char), letters, fd);
-
-	if (size < 0)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 	{
-		free(ch);
-		fclose(fd);
 		return (0);
 	}
 
-	bytes_written = fwrite(ch, sizeof(char), size, stdout);
-
-	if (bytes_written < size)
+	buffer = malloc(sizeof(char) * (letters + 1));
+	if (buffer == NULL)
 	{
-		free(ch);
-		fclose(fd);
+		close(fd);
 		return (0);
 	}
 
-	free(ch);
-	fclose(fd);
-	return (size);
+	bytes_read = read(fd, buffer, letters);
+	if (bytes_read == -1)
+	{
+		close(fd);
+		free(buffer);
+		return (0);
+	}
+
+	buffer[bytes_read] = '\0';
+
+	bytes_written = write(STDOUT_FILENO, buffer, bytes_read);
+	if (bytes_written != bytes_read)
+	{
+		close(fd);
+		free(buffer);
+		return (0);
+	}
+
+	close(fd);
+	free(buffer);
+	return (bytes_read);
 }
