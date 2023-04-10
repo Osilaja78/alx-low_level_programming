@@ -4,6 +4,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#define BUFF_SIZE 1024
+
 int file_action(char *file_from, char *file_to);
 void close_fd(int fd);
 /**
@@ -19,7 +21,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		dprintf(2, "Usage: %s file_from file_to\n", argv[0]);
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
@@ -37,27 +39,24 @@ int main(int argc, char *argv[])
 int file_action(char *file_from, char *file_to)
 {
 	int fd_1, fd_2;
-	char buffer[1024];
+	char buffer[BUFF_SIZE];
 	ssize_t bytes_read, bytes_written;
-
-	if (file_from == NULL || file_to == NULL)
-		return (-1);
 
 	fd_1 = open(file_from, O_RDONLY);
 	if (fd_1 == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: can't read from file %s\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
 
 	fd_2 = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_2 == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: can't write to file %s\n", file_to);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 		exit(99);
 	}
 
-	while ((bytes_read = read(fd_1, buffer, 1024)))
+	while ((bytes_read = read(fd_1, buffer, BUFF_SIZE)))
 	{
 		if (bytes_read == -1)
 		{
@@ -71,12 +70,13 @@ int file_action(char *file_from, char *file_to)
 		{
 			close_fd(fd_1);
 			close_fd(fd_2);
-			exit(98);
+			exit(99);
 		}
 
 		if (bytes_written != bytes_read)
 		{
-			dprintf(STDERR_FILENO, "Error: can't write to file %s\n", file_to);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+			exit(99);
 		}
 	}
 
