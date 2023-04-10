@@ -70,8 +70,8 @@ int file_action(char *file_from, char *file_to)
 		if (bytes_written == -1)
 		{
 			close_fd(fd_1);
-                        close_fd(fd_2);
-                        exit(98);
+			close_fd(fd_2);
+			exit(98);
 		}
 
 		if (bytes_written != bytes_read)
