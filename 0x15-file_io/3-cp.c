@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 int file_action(char *file_from, char *file_to)
 {
 	int fd_1, fd_2;
-	char *buffer;
+	char buffer[1024];
 	ssize_t bytes_read, bytes_written;
 
 	if (file_from == NULL || file_to == NULL)
@@ -46,45 +46,36 @@ int file_action(char *file_from, char *file_to)
 	fd_1 = open(file_from, O_RDONLY);
 	if (fd_1 == -1)
 	{
-		dprintf(2, "Error: can't read from file %s\n", file_from);
+		dprintf(STDERR_FILENO, "Error: can't read from file %s\n", file_from);
 		exit(98);
 	}
 
-	buffer = malloc(sizeof(char) * 1024);
-	if (buffer == NULL)
+	fd_2 = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	if (fd_2 == -1)
 	{
-		close_fd(fd_1);
-		exit(98);
+		dprintf(STDERR_FILENO, "Error: can't write to file %s\n", file_to);
+		exit(99);
 	}
 
 	bytes_read = read(fd_1, buffer, 1024);
 	if (bytes_read == -1)
 	{
 		close_fd(fd_1);
-		free(buffer);
 		exit(98);
 	}
 
-	buffer[bytes_read] = '\0';
-	close_fd(fd_1);
-
-	fd_2 = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (fd_2 == -1)
-	{
-		dprintf(2, "Error: can't write to file %s\n", file_to);
-		exit(99);
-	}
+	/*buffer[bytes_read] = '\0';*/
 
 	bytes_written = write(fd_2, buffer, bytes_read);
 	if (bytes_written != bytes_read)
 	{
+		dprintf(STDERR_FILENO, "Error: can't write to file %s\n", file_to);
 		close_fd(fd_2);
-		free(buffer);
 		exit(99);
 	}
 
+	close_fd(fd_1);
 	close_fd(fd_2);
-	free(buffer);
 	return (0);
 }
 
@@ -98,7 +89,7 @@ void close_fd(int fd)
 {
 	if (close(fd) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
