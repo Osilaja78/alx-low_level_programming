@@ -21,19 +21,15 @@ void print_elf_header(Elf64_Ehdr *ehdr)
 		printf("%02x ", ehdr->e_ident[i]);
 	printf("\n");
 
-	printf("Class:                             %s\n", \
-		ehdr->e_ident[EI_CLASS] == ELFCLASS64 ? "ELF64" : "Invalid Class");
-	printf("Data:                              %s\n", \
-		ehdr->e_ident[EI_DATA] == ELFDATA2LSB ? \
+	printf("Class: %s\n", ehdr->e_ident[EI_CLASS] \
+		== ELFCLASS64 ? "ELF64" : "Invalid Class");
+	printf("Data: %s\n", ehdr->e_ident[EI_DATA] == ELFDATA2LSB ? \
 		"2's complement, little endian" : "Invalid data encoding");
-	printf("Version:                           %d (current)\n", \
-		ehdr->e_ident[EI_VERSION]);
-	printf("OS/ABI:                            %d\n", \
-		ehdr->e_ident[EI_OSABI]);
-	printf("ABI Version:                       %d\n", \
-			ehdr->e_ident[EI_ABIVERSION]);
-	printf("Type:                              %d\n", ehdr->e_type);
-	printf("Entry point address:               0x%lx\n", ehdr->e_entry);
+	printf("Version: %d (current)\n", ehdr->e_ident[EI_VERSION]);
+	printf("OS/ABI: %d\n", ehdr->e_ident[EI_OSABI]);
+	printf("ABI Version: %d\n", ehdr->e_ident[EI_ABIVERSION]);
+	printf("Type: %d\n", ehdr->e_type);
+	printf("Entry point address: 0x%lx\n", ehdr->e_entry);
 }
 
 /**
