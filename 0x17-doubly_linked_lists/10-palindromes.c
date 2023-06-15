@@ -16,7 +16,7 @@ int is_palindrome(int number) {
 }
 
 int main() {
-    int i, j, product, largest_palindrome = 0;
+    int i, j, product, n1, n2, largest_palindrome = 0;
     
     for (i = 100; i < 1000; i++) {
         for (j = i; j < 1000; j++) {
@@ -24,11 +24,13 @@ int main() {
             
             if (is_palindrome(product) && product > largest_palindrome) {
                 largest_palindrome = product;
+		n1 = i;
+		n2 = j;
             }
         }
     }
     
-    printf("%d", largest_palindrome);
+    printf("%d = %d * %d\n", largest_palindrome, n1, n2);
     
     return 0;
 }
