@@ -5,7 +5,7 @@
  * @key: the key.
  * @size: the size of the array or the hash table.
  *
- * Rturn: the index of @key.
+ * Return: the index of @key.
  */
 unsigned long int key_index(const unsigned char *key, unsigned long int size)
 {
