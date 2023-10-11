@@ -1,7 +1,7 @@
 #include "search_algos.h"
 
 /**
- * binary_search - searches for a value in a sorted array 
+ * binary_search - searches for a value in a sorted array
  * using binary search algorithm.
  * @array: arrat to be searched.
  * @size: no of elements in array.
